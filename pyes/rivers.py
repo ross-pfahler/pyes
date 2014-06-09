@@ -88,6 +88,7 @@ class TwitterRiver(River):
         self.consumer_secret = kwargs.pop('consumer_secret', None)
         self.access_token = kwargs.pop('access_token', None)
         self.access_token_secret = kwargs.pop('access_token_secret', None)
+        self.raw = kwargs.pop('raw', None)
         # These filters may be lists or comma-separated strings of values
         self.tracks = kwargs.pop('tracks', None)
         self.follow = kwargs.pop('follow', None)
@@ -110,6 +111,9 @@ class TwitterRiver(River):
             }
         else:
             raise ValueError("Twitter river requires authentication by username/password or OAuth")
+
+        if self.raw is not None:
+            result[self.type]['raw'] = self.raw
         filter = {}
         if self.tracks:
             filter['tracks'] = self.tracks

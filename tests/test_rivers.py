@@ -64,6 +64,7 @@ class RiversTestCase(ESTestCase):
                                  consumer_secret="aaa",
                                  access_token="aaa",
                                  access_token_secret="aaa",
+                                 raw=True,
                                  )
         result = self.conn.create_river(test_river, river_name='test_index')
         self.assertResultContains(result, {'ok': True})
