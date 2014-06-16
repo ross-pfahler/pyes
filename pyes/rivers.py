@@ -93,6 +93,7 @@ class TwitterRiver(River):
         self.tracks = kwargs.pop('tracks', None)
         self.follow = kwargs.pop('follow', None)
         self.locations = kwargs.pop('locations', None)
+        self.ignore_retweet = kwargs.pop('ignore_retweet', None)
         super(TwitterRiver, self).__init__(**kwargs)
 
     def _serialize(self):
@@ -123,6 +124,8 @@ class TwitterRiver(River):
             filter['locations'] = self.locations
         if filter:
             result[self.type]['filter'] = filter
+        if self.ignore_retweet:
+            result[self.type]['ignore_retweet'] = True
         return result
 
 
